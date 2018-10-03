@@ -27,7 +27,7 @@ public class TrollBook {
             pages[i] = new Page(io.getWord(), io.getInt());
         }
 
-        Quick.sort(pages);
+        IterativeQuick.sort(pages);
 
         String res = String.join(" ", Stream.of(pages).map(p -> p.w).toArray(String[]::new));
         System.out.println(res);
