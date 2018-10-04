@@ -1,7 +1,10 @@
 package no.uib.ii.inf102.f18.mandatory1;
 
-import java.util.NoSuchElementException;
-
+/**
+ * @author Carl August Gjørsvik
+ *
+ * @param <Key>
+ */
 public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
 
     private final int NMAX;
@@ -12,14 +15,14 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
     
     @SuppressWarnings("unchecked")
     public IndexMinPQ(int maxSize) {
-        if (maxSize<0) throw new IllegalArgumentException("Size of priority queue cannot be less than zero.");
+        if (maxSize<0) throw new IllegalArgumentException("Size of priority queue cannot be greater than zero.");
         
         NMAX = maxSize;
         keys = (Key[]) new Comparable[maxSize];
         mpq = new int[maxSize+1];
         inv = new int[maxSize+1];
         
-        for (int i=1; i<=NMAX; i++) {
+        for (int i=0; i<=NMAX; i++) {
             inv[i] = -1;
         }
     }
@@ -36,7 +39,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
     }
 
     private void swim(int k) {
-        while (k > 1 && less(k/2, k)) {
+        while (k > 1 && greater(k/2, k)) {
             swap(k/2, k);
             k = k/2;
         }
@@ -48,14 +51,14 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         
         if (left > size) return;
         if (right > size) {
-            if (less(k, left)) swap(k, left);
+            if (greater(k, left)) swap(k, left);
         }
         
-        if (less(right, left) && less(k, left)) {
+        if (greater(right, left) && greater(k, left)) {
             swap(k, left);
             sink(left);
             return;
-        } else if (less(right, left) && less(k, right)) {
+        } else if (greater(right, left) && greater(k, right)) {
             swap(k, right);
             sink(right);
             return;
@@ -63,8 +66,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         
     }
     
-    private boolean less(int i, int j) {
-        return keys[mpq[i]].compareTo(keys[mpq[j]]) < 0;
+    private boolean greater(int i, int j) {
+        return keys[mpq[i]].compareTo(keys[mpq[j]]) > 0;
     }
     
     private void swap(int i, int j) {
@@ -98,7 +101,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         swap(i, size--);
         swim(i);
         sink(i);
-        keys[index] = null;
+//        keys[index] = null;  // unnecessary?
         inv[index] = -1;
     }
 
@@ -124,7 +127,11 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
 
     
     public int poll() {
-        return 0;
+        if (size==0) return -1;
+        
+        int i = mpq[1];
+        delete(i);
+        return i;
     }
 
     
