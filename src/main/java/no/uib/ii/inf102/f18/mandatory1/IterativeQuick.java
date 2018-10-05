@@ -13,34 +13,33 @@ import java.util.Stack;
 public class IterativeQuick {
     public static void sort(Comparable[] arr) {
         shuffle(arr);
-        IterativeQuicksort(arr, 0, arr.length);
+        IterativeQuicksort(arr);
     }
     
     /**
-     * @param arr
-     * @param lb
-     * @param ub
+     * Iterative implementation of Quick Sort.
+     * @param arr the array to sort (in place)
      */
-    private static void IterativeQuicksort(Comparable[] arr, int lb, int ub) {
+    private static void IterativeQuicksort(Comparable[] arr) {
         Stack<Integer> stack = new Stack<>();
         
-        stack.push(lb);
-        stack.push(ub);
+        stack.push(0);
+        stack.push(arr.length);
         
-        int lo, hi, j;
+        int lb, ub, j;
         
         while (!stack.isEmpty()) {
-            hi = stack.pop();
-            lo = stack.pop();
+            ub = stack.pop();
+            lb = stack.pop();
             
-            if (hi-lo < 2) continue;
+            if (ub-lb < 2) continue;
             
-            j = partition(arr, lo, hi);
+            j = partition(arr, lb, ub);
             
-            stack.push(lo);
+            stack.push(lb);
             stack.push(j);
             stack.push(j+1);
-            stack.push(hi);
+            stack.push(ub);
         }
         
     }

@@ -69,6 +69,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
 
     public void changeKey(int index, Key key) {
         if (index < 0 || index >= NMAX) throw new IndexOutOfBoundsException();
+        
+        // should it be allowed to "change" a key when there is nothing to change?
         if (!contains(index)) throw new IllegalArgumentException("Cannot change an index which does not exist.");
         
         keys[index] = key;
@@ -99,7 +101,6 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         if (index < 0 || index >= NMAX) throw new IndexOutOfBoundsException();
         if (!contains(index)) throw new IllegalArgumentException("Given index is not associated with any key.");
         
-        // ????
         return keys[index];
     }
 
