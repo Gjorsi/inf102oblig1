@@ -40,30 +40,19 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
 
     private void swim(int k) {
         while (k > 1 && greater(k/2, k)) {
-            swap(k/2, k);
+            swap(k, k/2);
             k = k/2;
         }
     }
     
     private void sink(int k) {
-        int left = k*2;
-        int right = left+1;
-        
-        if (left > size) return;
-        if (right > size) {
-            if (greater(k, left)) swap(k, left);
+        while (2*k <= size) {
+            int j = 2*k;
+            if (j < size && greater(j, j+1)) j++;
+            if (!greater(k, j)) break;
+            swap(k, j);
+            k = j;
         }
-        
-        if (greater(right, left) && greater(k, left)) {
-            swap(k, left);
-            sink(left);
-            return;
-        } else if (greater(right, left) && greater(k, right)) {
-            swap(k, right);
-            sink(right);
-            return;
-        } else return;
-        
     }
     
     private boolean greater(int i, int j) {

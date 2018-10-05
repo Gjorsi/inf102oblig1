@@ -9,8 +9,8 @@ import java.util.Stack;
  * @author Carl August Gjørvik
  *
  */
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class IterativeQuick {
-    
     public static void sort(Comparable[] arr) {
         shuffle(arr);
         IterativeQuicksort(arr, 0, arr.length);
@@ -21,7 +21,6 @@ public class IterativeQuick {
      * @param lb
      * @param ub
      */
-    @SuppressWarnings("rawtypes")
     private static void IterativeQuicksort(Comparable[] arr, int lb, int ub) {
         Stack<Integer> stack = new Stack<>();
         

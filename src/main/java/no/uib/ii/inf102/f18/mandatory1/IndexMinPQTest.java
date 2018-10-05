@@ -11,16 +11,17 @@ import org.junit.jupiter.api.Test;
  * Unit test
  */
 class IndexMinPQTest {
-	
-	private IIndexPQ<String> pq;
+    
+    private IIndexPQ<String> pq;
 
-	@BeforeEach
-	void setup() {
-		this.pq = new IndexMinPQ<String>(10);
-	}
+    @BeforeEach
+    void setup() {
+        this.pq = new IndexMinPQ<String>(7);
+    }
 
-	@Test
-	void sanityTest() {
+    @Test
+    void sanityTest() {
+        
         pq.add(0, "A");
         pq.add(3, "K");
         pq.add(6, "E");
@@ -36,13 +37,12 @@ class IndexMinPQTest {
         assertEquals(0, pq.poll());
         assertFalse(pq.contains(0));
         assertEquals(6, pq.poll());
-//
-//        pq.changeKey(0, "Z");
-//        assertEquals("Z", pq.peekKey());
-//        assertEquals(0, pq.poll());
-//        assertEquals("E", pq.peekKey());
-//        assertEquals(6, pq.poll());
-//        assertEquals(0, pq.size());
-	}
-	
+
+        pq.changeKey(2, "Z");
+        assertEquals("K", pq.peekKey());
+        assertEquals(3, pq.poll());
+        assertEquals(2, pq.poll());
+
+        assertEquals(0, pq.size());
+    }
 }
