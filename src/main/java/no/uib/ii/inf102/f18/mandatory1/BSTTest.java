@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit test
  */
-class BSTKeysIterationTest {
+class BSTTest {
     
     private BinarySearchTree<Integer, String> bst;
 
@@ -20,7 +20,7 @@ class BSTKeysIterationTest {
     }
 
     @Test
-    void sanityTest() {
+    void iteratorSanityTest() {
         
         bst.put(0, "v");
         bst.put(1, "h");
@@ -31,5 +31,17 @@ class BSTKeysIterationTest {
         for(int a : bst.keys()) {
             assertEquals(i++, a); 
         }
+    }
+    
+    @Test
+    void getSanityTest() {
+        bst.put(3, "o");
+        bst.put(2, "f");
+        bst.put(6, "b");
+        bst.put(0, "w");
+        
+        assertEquals("o",bst.get(3));
+        assertEquals("b",bst.get(6));
+        assertEquals("w",bst.get(0));
     }
 }

@@ -60,7 +60,19 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements ISy
 
     @Override
     public Value get(Key key) {
-        return find(root, key);
+        Node t = root;
+        
+        while(t != null) {
+            int compare = key.compareTo(t.key);
+            if (compare < 0) {
+                t = t.left;
+            } else if (compare > 0) {
+                t = t.right;
+            } else {
+                return t.value;
+            }
+        }
+        return null;
     }
 
     private Value find(Node node, Key key) {
