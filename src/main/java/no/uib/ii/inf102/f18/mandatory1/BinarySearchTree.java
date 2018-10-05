@@ -3,6 +3,7 @@ package no.uib.ii.inf102.f18.mandatory1;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Iterator;
 
 /**
  * This is the BST implementation from lecture.
@@ -157,16 +158,15 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> implements ISy
 
     @Override
     public Iterable<Key> keys() {
-        Deque<Key> queue = new ArrayDeque<>();
+        IterableQueue<Key> queue = new IterableQueue<>();
         keys(root, queue);
         return queue;
     }
 
-    private void keys(Node node, Deque<Key> queue) {
+    private void keys(Node node, IterableQueue<Key> queue) {
         if (node == null) return;
         keys(node.left, queue);
-        queue.addLast(node.key);
+        queue.add(node.key);
         keys(node.right, queue);
     }
-
 }
