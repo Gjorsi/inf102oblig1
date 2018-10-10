@@ -61,8 +61,8 @@ public class Quick {
             First while loop: Find next index i where arr[i] >= pivot (incrementing i)
             Second while loop: Find next j where arr[j] <= pivot (decrementing j)
             */
-            while (++i < ub && pivot.compareTo(arr[i]) > 0);
-            while (pivot.compareTo(arr[--j]) < 0); // && j > lb ); // commented check is redundant (why?)
+            while (++i < ub && pivot.compareTo(arr[i]) >= 0);
+            while (pivot.compareTo(arr[--j]) <= 0 && j > lb); // && j > lb ); // commented check is redundant (why?)
 
             /*
             At this point i points to the an element >= pivot, and j points to an element <= pivot.
