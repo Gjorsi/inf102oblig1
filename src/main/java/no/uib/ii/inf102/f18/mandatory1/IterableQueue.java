@@ -15,10 +15,6 @@ public class IterableQueue<E> implements Iterable<E> {
         }
     }
     
-    public IterableQueue() {
-        
-    }
-    
     public void add(E element) {
         if (head == null) head = tail = new node(element);
         else {

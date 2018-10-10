@@ -15,7 +15,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
     
     @SuppressWarnings("unchecked")
     public IndexMinPQ(int maxSize) {
-        if (maxSize<0) throw new IllegalArgumentException("Size of priority queue cannot be greater than zero.");
+        if (maxSize<0) throw new IllegalArgumentException("Size of priority queue cannot be less than zero.");
         
         NMAX = maxSize;
         keys = (Key[]) new Comparable[maxSize];
@@ -112,6 +112,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
 
     
     public int peek() {
+        if (size==0) return -1;
         return mpq[1];
     }
 

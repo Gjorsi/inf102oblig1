@@ -21,7 +21,7 @@ public class IterativeQuick {
      * @param arr the array to sort (in place)
      */
     private static void IterativeQuicksort(Comparable[] arr) {
-        Stack<Integer> stack = new Stack<>();
+        SimpleStack<Integer> stack = new SimpleStack<>();
         
         stack.push(0);
         stack.push(arr.length);
@@ -103,6 +103,34 @@ public class IterativeQuick {
         for (int i = 0; i < arr.length; i++) {
             int j = r.nextInt(arr.length-i) + i;
             swap(i, j, arr);
+        }
+    }
+    
+    private static class SimpleStack<E> {
+        Node top;
+        
+        public void push(E elem) {
+            Node t = new Node(elem, top);
+            top = t;
+        }
+        
+        public boolean isEmpty() {
+            return top == null;
+        }
+
+        public E pop() {
+            Node t = top;
+            top = t.prev;
+            return (E) t.elem;
+        }
+        
+        private class Node {
+            E elem;
+            Node prev;
+            public Node(E elem, Node prev) {
+                this.elem = elem;
+                this.prev = prev;
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ public class BSTDebugging {
         for (int i=0; i<n; i++) {
             int c = io.getInt();
             
-            if ((c==m && i<n-1) || c < min || c > max) {
+            if ((c==m && i<n-1) || c <= min || c >= max) {
                 io.println("invalid");
                 io.close();
                 return;
