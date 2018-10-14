@@ -4,7 +4,8 @@ import java.util.SplittableRandom;
 import java.util.Stack;
 
 /**
- * 
+ * An iterative implementation of quicksort. <br>
+ * The methods partition(), swap() and shuffle() are copied from {@link no.uib.ii.inf102.f18.mandatory1.Quick}.
  * 
  * @author Carl August Gjørvik
  *
@@ -17,7 +18,10 @@ public class IterativeQuick {
     }
     
     /**
-     * Iterative implementation of Quick Sort.
+     * The array is partitioned by partition(), the references to start and end of created sub-arrays are stored in a stack. <br>
+     * While the stack is not empty, retrieve the top sub-array, partition it and return new sub-array references to the stack.
+     * Discard references to sub-arrays of size 1 or less. <br>
+     * Size of sub-array can be zero if lb == ub, as ub is exclusive.
      * @param arr the array to sort (in place)
      */
     private static void IterativeQuicksort(Comparable[] arr) {
@@ -106,6 +110,13 @@ public class IterativeQuick {
         }
     }
     
+    /**
+     * A simple stack implementation to be used by IterativeQuicksort
+     * 
+     * @author Carl August Gjørsvik
+     *
+     * @param <E> the type to store in this stack
+     */
     private static class SimpleStack<E> {
         Node top;
         

@@ -1,6 +1,8 @@
 package no.uib.ii.inf102.f18.mandatory1;
 
 /**
+ * 
+ * 
  * @author Carl August Gjørsvik
  *
  * @param <Key>
@@ -9,8 +11,17 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
 
     private final int NMAX;
     private int size;
+    
+    //1-indexed binary heap of references to indices in the keys array, sorted by values in keys array
     private int[] mpq;
+    
+    /**
+     * An array to keep track of the key indices' position in the mpq.
+     * Such that for the key at position x in keys[], its position in the heap mpq[] is inv[x]
+     * Value is -1 if there is no key at that index.
+     */
     private int[] inv;
+    
     private Key[] keys;
     
     @SuppressWarnings("unchecked")
