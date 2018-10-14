@@ -24,6 +24,11 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
     
     private Key[] keys;
     
+    /**
+     * Indexed minimum-priority queue
+     * 
+     * @param maxSize the maximum number of elements this queue can hold
+     */
     @SuppressWarnings("unchecked")
     public IndexMinPQ(int maxSize) {
         if (maxSize<0) throw new IllegalArgumentException("Size of priority queue cannot be less than zero.");
@@ -49,6 +54,11 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         
     }
 
+    /**
+     * Swap value at pos k with its parent while parent is greater
+     * 
+     * @param k position of value to move
+     */
     private void swim(int k) {
         while (k > 1 && greater(k/2, k)) {
             swap(k, k/2);
@@ -56,6 +66,11 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         }
     }
     
+    /**
+     * Swap value at pos k with the lesser of its children while it has children of lesser value
+     * 
+     * @param k position of value to move
+     */
     private void sink(int k) {
         while (2*k <= size) {
             int j = 2*k;
@@ -66,6 +81,13 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         }
     }
     
+    /**
+     * Check if if key at position i in heap is greater than key at position j in heap
+     * 
+     * @param i
+     * @param j
+     * @return true if key at position i in heap > key at position j in heap
+     */
     private boolean greater(int i, int j) {
         return keys[mpq[i]].compareTo(keys[mpq[j]]) > 0;
     }
@@ -80,8 +102,6 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
 
     public void changeKey(int index, Key key) {
         if (index < 0 || index >= NMAX) throw new IndexOutOfBoundsException();
-        
-        // should it be allowed to "change" a key when there is nothing to change?
         if (!contains(index)) throw new IllegalArgumentException("Cannot change an index which does not exist.");
         
         keys[index] = key;
@@ -103,7 +123,7 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements IIndexPQ<Key> {
         swap(i, size--);
         swim(i);
         sink(i);
-//        keys[index] = null;  // unnecessary?
+        keys[index] = null;
         inv[index] = -1;
     }
 
