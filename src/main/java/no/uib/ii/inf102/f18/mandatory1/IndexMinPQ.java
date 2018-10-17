@@ -1,8 +1,6 @@
 package no.uib.ii.inf102.f18.mandatory1;
 
 /**
- * 
- * 
  * @author Carl August Gjørsvik
  *
  * @param <Key>
