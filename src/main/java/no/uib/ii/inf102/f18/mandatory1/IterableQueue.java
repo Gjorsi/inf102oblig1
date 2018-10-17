@@ -2,6 +2,16 @@ package no.uib.ii.inf102.f18.mandatory1;
 
 import java.util.Iterator;
 
+/**
+ * A simple singly-linked list queue implementation. <br>
+ * Implements Iterable.
+ * 
+ * It can only add elements and return an iterator. No other options implemented.
+ * 
+ * @author Carl August Gjørsvik
+ *
+ * @param <E>
+ */
 public class IterableQueue<E> implements Iterable<E> {
     node head;
     node tail;

@@ -1,7 +1,6 @@
 package no.uib.ii.inf102.f18.mandatory1;
 
 import java.util.SplittableRandom;
-import java.util.Stack;
 
 /**
  * An iterative implementation of quicksort. <br>
